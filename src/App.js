@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Header from "./components/header";
+import Body from "./components/Body";
 // const heading = React.createElement("h1",{},"React heading")
 // const root= ReactDOM.createRoot(document.getElementById("root"));
 // root.render(heading)
@@ -28,38 +30,53 @@ import ReactDOM from "react-dom/client";
 // );
 
 //react component
-const pare = (
-  <h1 className="heading" tabIndex="5">
-    React heading
-  </h1>
-);
+// const pare = (
+//   <h1 className="heading" tabIndex="5">
+//     React heading
+//   </h1>
+// );
 // create a functional component
 //syntax1
-const HeadingComponent = () => (
-  <div>
-    <h1>HI i am react functional component</h1>
-  </div>
-);
+// const HeadingComponent = () => (
+//   <div>
+//     <h1>HI i am react functional component</h1>
+//   </div>
+// );
 //syntax2
 
-const HeadingComponent2 = () => {
-  return <h1>One line return </h1>;
-};
+// const HeadingComponent2 = () => {
+//   return <h1>One line return </h1>;
+// };
 
 //syntax 3
-const HeadingComponent3 = () => <h1>Using arrow functions</h1>;
+// const HeadingComponent3 = () => <h1>Using arrow functions</h1>;
 
 //component composition - component inside component
-const sample=1000;
-const Title = () => (
-  <div>
-    <p>the sample data is {sample}</p>
-    {HeadingComponent()}
-   { <HeadingComponent2 />}
-   { <HeadingComponent3></HeadingComponent3> }
-  </div>
-);
+// const sample=1000;
+// const Title = () => (
+//   <div>
+//     <p>the sample data is {sample}</p>
+//     {HeadingComponent()}
+//    { <HeadingComponent2 />}
+//    { <HeadingComponent3></HeadingComponent3> }
+//   </div>
+// );
+
+
+
+//food ordering app
+
+
+//The base
+const AppLayout = () => {
+  return (
+    <div className="AppContainer">
+      <Header />
+      <Body></Body>
+    </div>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(pare);
-root.render(<Title />);
+root.render(<AppLayout />);
