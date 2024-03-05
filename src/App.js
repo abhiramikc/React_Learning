@@ -15,6 +15,7 @@ import Body from "./components/Body";
       <div id="children2">
         <h2>im h2 tag</h2>
     </div>
+     
 </div> 
 */
 }
@@ -65,7 +66,7 @@ import Body from "./components/Body";
 
 
 //food ordering app
-
+  
 
 //The base
 const AppLayout = () => {
@@ -74,9 +75,13 @@ const AppLayout = () => {
       <Header />
       <Body></Body>
     </div>
+
+
+
+
   );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(pare);
+// root.render(pare); 
 root.render(<AppLayout />);

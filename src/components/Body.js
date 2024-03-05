@@ -1,106 +1,113 @@
 import RestCard from "./ResCard";
-import resList from "../utils/mockData";
-import { useState } from "react";
+import Shimmerui from "./Shimmerui";
+import { useEffect, useState } from "react";
 const Body = () => {
-let restaurents=[
-    {
-        info: {
-          id: "233804",
-          name: "KFC",
-          cloudinaryImageId: "f01666ac73626461d7455d9c24005cd4",
-          locality: "MG Road",
-          areaName: "Ravipuram",
-          costForTwo: "₹400 for two",
-          cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
-          avgRating: 4.6,
-          parentId: "547",
-          avgRatingString: "4.6",
-          totalRatingsString: "5K+",
-          sla: {
-            deliveryTime: 32,
-            lastMileTravel: 7.3,
-            serviceability: "SERVICEABLE",
-            slaString: "30-35 mins",
-            lastMileTravelString: "7.3 km",
-            iconType: "ICON_TYPE_EMPTY",
-          },
-          availability: {
-            nextCloseTime: "2024-02-26 23:00:00",
-            opened: true,
-          },
-          
-          aggregatedDiscountInfoV3: {
-            header: "20% OFF",
-            subHeader: "UPTO ₹50",
-          },
-         
-        },
-      
-      },
-      {
-        info: {
-          id: "57445",
-          name: "Subway",
-          cloudinaryImageId: "63178e3e64d503a479f2a2048a474552",
-          locality: "Panampilly Nagar",
-          areaName: "Elamkulam",
-          costForTwo: "₹350 for two",
-          cuisines: ["Healthy Food", "Salads", "Snacks", "Desserts", "Beverages"],
-          avgRating: 4.3,
-          parentId: "2",
-          avgRatingString: "4.3",
-          totalRatingsString: "10K+",
-          sla: {
-            deliveryTime: 36,
-            lastMileTravel: 7.9,
-            serviceability: "SERVICEABLE",
-            slaString: "35-40 mins",
-            lastMileTravelString: "7.9 km",
-            iconType: "ICON_TYPE_EMPTY",
-          },
-
-   
-       
-        },
-      
-      },
-]
-let [listRes,setListRes] = useState(resList);
-console.log(listRes);
-    return (
-      <div>
-        <div className="searchBar">
-        <input type="text" placeholder="Search" onChange={($event)=>{
-            const searchTerm = $event.target.value;
-            // const searchresult = listRes.info.cuisines.filter((res) => {
-            //     res.startWith($event.target.value)
-            // })
-            console.log("search searchTerm",searchTerm);
-        }}/>
-        </div>
-        <div className="filter">
-        <button className="filter-btn" onClick={() => {
-            const filteredList = listRes.filter(
-                (resto)=> resto.info.avgRating > 4.5
-                );
-            // console.log("restaurents",filteredList);
-            setListRes(filteredList)
-            // console.log("listRes after click",listRes);
-        }
-        
-        }>
-            Top Rated RESTAURANT</button>
-        </div>
-        <div className="card-container">
-        {
-          listRes.map((restarent) => 
-          (
-            <RestCard key={restarent.info.id} resData = {restarent} />
-           ) )
-        }
-        </div>
-      </div>
+  const [listRes, setListRes] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  //for search functionslity inside the body
+  const [filetredRestarent, setfiletredRestarent] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+  const handleScroll = () => {
+    console.log("handle scroll called!");
+    setisLoading(true);
+}
+  useEffect(() => {
+    console.log("useEffect");
+    fetchData();
+    document.addEventListener('scroll', handleScroll);
+  }, []);
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.91850&lng=76.25580&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
+    const json = await data.json();
+    console.log("json", json);
+    const actual =
+      json?.data?.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+    setListRes(actual);
+    setfiletredRestarent(actual); //take copy of it and save it on filetredRestarent
+  };
+  if (listRes.length === 0) {
+    return <Shimmerui />;
+  }
+  const searchFunction = () => {
+    console.log("Searching...", searchText);
+    if(searchText.length >0){
+      const filteredByName = listRes.filter((item) =>
+      item.info.name.toLowerCase().includes(searchText.toLowerCase())
+      ); 
+        // setListRes(filteredByName);
+    if (filteredByName.length > 0) {
+          setfiletredRestarent(filteredByName);
+    }
+    else {
+       setListRes(listRes);
+    }
+        console.log("LisRes after filter", filteredByName);
+    }
+    else {
+             setfiletredRestarent(listRes);
+    }
+   
+  
+
   };
 
-  export default Body;
+  const filterTopRatedRes = () => {
+    console.log("filter clicked");
+       const filteredList = listRes.filter(
+                (resto) => resto.info.avgRating > 4.5
+              );
+    setfiletredRestarent(filteredList);
+
+  }
+
+  return (
+    <div>
+      <div className="filter-search-container">
+        <div className="searchBar">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              console.log(searchText);
+              searchFunction();
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <div className="filter">
+          <button
+            className="filter-btn"
+            onClick={() =>
+            {
+              filterTopRatedRes();
+              // const filteredList = listRes.filter(
+              //   (resto) => resto.info.avgRating > 4.5
+              // );
+              // setListRes(filteredList);
+            }
+            }
+          >
+            Top Rated RESTAURANT
+          </button>
+        </div>
+      </div>
+
+      <div className="card-container">
+        {filetredRestarent.map((restarent) => (
+          <RestCard key={restarent.info.id} resData={restarent} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Body;

@@ -1,6 +1,7 @@
 .res-logo img {
     max-width: 50%;
-  }
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -26,29 +27,63 @@ li {
     display: flex;
     justify-content: flex-end;
 }
+
 .restcard {
     margin: 4px;
-    border: 1px solid #000;
+    border: 1px solid #f0f0f0;
     width: min-content;
+    border-radius: 25px;
 }
+
 .restcard :hover {
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     cursor: pointer;
 
 }
+
 .restcard img {
     width: 303px;
     height: 225px;
     padding: 1px;
+    border-radius: 25px;
 }
+
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 0px 35px;
+    padding: 0px 30px;
 }
+
 .filter {
-padding: 5px 0px;
+    padding: 5px 0px;
 }
+
 .searchBar {
     padding: 5px;
+}
+
+.shimmer-card {
+    margin: 5px;
+    width: 200px;
+    height: 300px;
+    background-color: #f0f0f0;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btn-login {}
+
+.filter-search-container {
+    display: flex;
+}
+
+h4 {
+    font-weight: normal;
+}
+
+.details {
+    padding-left: 15px;
 }
