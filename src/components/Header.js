@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {LOGO_URL} from '../utils/constants'
+import { Link } from 'react-router-dom';
 export const Header = () => {
   const [btnName,setbtnName] = useState("login")
   const handleClick = () => {
@@ -22,14 +23,12 @@ export const Header = () => {
           />
         </div>
         <div className="nav-item">
-          <ul>
-
-  
-            <li>Home</li>
-            <li>About</li>
-            <li>contact</li>
-            <li>Cart</li>
-            <li><button onClick={handleClick}>{btnName}</button></li>
+          <ul className="nav-header">  
+            <li className="nav"><Link to="/">Home</Link></li>
+            <li className="nav">< a href="/about">About</a></li>
+            <li className="nav"><Link to="/contact">contact</Link></li>
+            <li className="nav"><Link to="/cart">Cart</Link></li>
+            <li className="nav"><button onClick={handleClick}>{btnName}</button></li>
             </ul>
         </div>
       </div>

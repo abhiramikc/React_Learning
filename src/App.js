@@ -2,86 +2,41 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/header";
 import Body from "./components/Body";
-// const heading = React.createElement("h1",{},"React heading")
-// const root= ReactDOM.createRoot(document.getElementById("root"));
-// root.render(heading)
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Error from "./components/Error";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 
-{
-  /*
-<div id="parent">
-    <div id="children">
-        <h1>im h1 tag</h1>
-    </div>
-      <div id="children2">
-        <h2>im h2 tag</h2>
-    </div>
-     
-</div> 
-*/
-}
-
-// const pare=React.createElement("div",{id:"parent"},
-// [React.createElement("div",{id:"children"},
-// React.createElement("h1",{},"i am h1 tag")
-// ),
-// React.createElement("div",{id:"children2"},
-// React.createElement("h2",{},"i am h2 tag")
-// ),
-// ]
-// );
-
-//react component
-// const pare = (
-//   <h1 className="heading" tabIndex="5">
-//     React heading
-//   </h1>
-// );
-// create a functional component
-//syntax1
-// const HeadingComponent = () => (
-//   <div>
-//     <h1>HI i am react functional component</h1>
-//   </div>
-// );
-//syntax2
-
-// const HeadingComponent2 = () => {
-//   return <h1>One line return </h1>;
-// };
-
-//syntax 3
-// const HeadingComponent3 = () => <h1>Using arrow functions</h1>;
-
-//component composition - component inside component
-// const sample=1000;
-// const Title = () => (
-//   <div>
-//     <p>the sample data is {sample}</p>
-//     {HeadingComponent()}
-//    { <HeadingComponent2 />}
-//    { <HeadingComponent3></HeadingComponent3> }
-//   </div>
-// );
-
-
+import ResMenu from "./components/ResMenu";
 
 //food ordering app
-  
+   
 
 //The base
 const AppLayout = () => {
   return (
     <div className="AppContainer">
       <Header />
-      <Body></Body>
+      <Outlet></Outlet>
     </div>
-
-
-
-
   );
+  
 };
 
+const appRoute = createBrowserRouter([
+  {
+    path: '/', element: <AppLayout />, errorElement: <Error />,
+    children: [
+  {path:'/', element: <Body />},
+  { path: '/about', element: <About /> },
+  { path: '/contact', element: <Contact /> },
+  {path:'/restaurent/:resid',element : <ResMenu />}
+    ]
+  },
+])
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(pare); 
-root.render(<AppLayout />);
+// root.render(pare);
+// root.render(<AppLayout />);
+//route need to provide in order to run the route
+root.render(<RouterProvider router={appRoute} />);

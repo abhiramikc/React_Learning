@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import RestCard from "./ResCard";
 import Shimmerui from "./Shimmerui";
 import { useEffect, useState } from "react";
@@ -103,7 +104,7 @@ const Body = () => {
 
       <div className="card-container">
         {filetredRestarent.map((restarent) => (
-          <RestCard key={restarent.info.id} resData={restarent} />
+         <Link key={restarent.info.id}  to={"/restaurent/"+restarent.info.id}><RestCard resData={restarent} /></Link> 
         ))}
       </div>
     </div>
