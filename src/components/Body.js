@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import RestCard from "./ResCard";
 import Shimmerui from "./Shimmerui";
 import { useEffect, useState } from "react";
+import useStatusCheck from "../utils/useStatusCheck";
 const Body = () => {
   const [listRes, setListRes] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -28,6 +29,10 @@ const Body = () => {
     setListRes(actual);
     setfiletredRestarent(actual); //take copy of it and save it on filetredRestarent
   };
+   const onlinecheck = useStatusCheck();
+    if (!onlinecheck) {
+        return <h1>You are offline check internet!</h1>
+    }
   if (listRes.length === 0) {
     return <Shimmerui />;
   }

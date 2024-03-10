@@ -3,23 +3,32 @@ import { useParams } from "react-router-dom";
 import { useEffect,useState } from "react";
 import Shimmerui from "./Shimmerui";
 import { MENU_URL } from "../utils/constants";
+import useResMenu from "../utils/useResMenu";
 import NoMenu from "./NoMenu";
+import useStatusCheck from "../utils/useStatusCheck";
 const ResMenu = () => {
-    const [resMenu,setresMenu] = useState(null);
+    //const [resMenu,setresMenu] = useState(null);
     const {resid} = useParams();
     console.log("resid", resid);
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    //custom hook
+    const resMenu = useResMenu(resid);
 
-    const fetchData = async () => {
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
+
+    // const fetchData = async () => {
         
-        const data = await fetch(MENU_URL+resid);
-        const json = await data.json();
-        console.log("json", json);
-        setresMenu(json.data);   
-    } 
+    //     const data = await fetch(MENU_URL+resid);
+    //     const json = await data.json();
+    //     console.log("json", json);
+    //     setresMenu(json.data);   
+    // } 
+    const onlinecheck = useStatusCheck();
+    if (!onlinecheck) {
+        return <h1>You are offline check internet!</h1>
+    }
             if (resMenu === null) {
         return <Shimmerui />;
     }
