@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import RestCard ,{withIsVegOption} from "./ResCard";
 import Shimmerui from "./Shimmerui";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import useStatusCheck from "../utils/useStatusCheck";
+import { UserContex } from "../utils/UserContex";
 const Body = () => {
+  const {loggedInUser,setUserName} = useContext(UserContex);
   const [listRes, setListRes] = useState([]);
   const [searchText, setSearchText] = useState("");
   //for search functionslity inside the body
@@ -108,6 +110,11 @@ const Body = () => {
           >
             Top Rated RESTAURANT
           </button>
+          <input type="text" value={loggedInUser} onChange={(e) => {
+            console.log("typed val", e.target.value);
+            setUserName(e.target.value);
+          } 
+          } />
         </div>
       </div>
 
@@ -115,7 +122,7 @@ const Body = () => {
         {
           filetredRestarent.map((restarent) =>
           (
-            <Link key={restarent.info.id} to={"/restaurent/" + restarent.info.id}>
+            <Link className="menu-card-text" key={restarent.info.id} to={"/restaurent/" + restarent.info.id}>
               {restarent.info.veg ? (
 
               <RestarentwithIsVeg resData={restarent} />

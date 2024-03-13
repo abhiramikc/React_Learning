@@ -8,7 +8,7 @@ const RestarentCategoryAccordianDescription = ({ items }) => {
       <div className="item-content">
         <div className="item-details">
           <div className="item-name">{item.card.info.name}</div>
-          <div className="item-price">Price: {item.card.info.price / 100}</div>
+          <div className="item-price">Price: {item.card.info.price / 100 | item.card.info.defaultPrice/100}</div>
         </div>
           <div className="item-image">
             <button className="btn-add"type="button">Add</button>

@@ -51,6 +51,9 @@
     flex-wrap: wrap;
     padding: 0px 30px;
 }
+Link {
+    text-decoration: none;
+}
 
 .filter {
     padding: 5px 0px;
@@ -99,4 +102,8 @@ menu {
 .header {
             justify-content: space-between;
             align-items: center;
+}
+.menu-card-text {
+    text-decoration: none;
+    color: black;
 }

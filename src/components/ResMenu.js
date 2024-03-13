@@ -12,6 +12,7 @@ const ResMenu = () => {
   //const [resMenu,setresMenu] = useState(null);
   const { resid } = useParams();
   const [hideAccordian, setHideAccordian] = useState(false);
+  const [showIndex,setShowIndex] = useState(null);
   //custom hook
   const resMenu = useResMenu(resid);
 
@@ -77,8 +78,11 @@ const ResMenu = () => {
         </div>
         <div className="menu">
           <ul className="menu-items">
-            {menusection.map((item) => (
-              <RestarentCategoryAccordian key={item.card.card.title} menuitem={item.card.card} />
+            {menusection.map((item,index) => (
+              <RestarentCategoryAccordian key={item.card.card.title} menuitem={item.card.card}
+                hideAccordian={index === showIndex ? true : false}
+                setShowIndex = {()=>setShowIndex(index)}
+              />
             ))}
           </ul>
         </div>
