@@ -1,9 +1,8 @@
 import React from 'react';
 class UserClass extends React.Component {
     constructor(props) {
-        console.log(" child constrctor");
         super(props);
-    console.log(props);
+    //(props);
    this.state = {
        count: 0,
             userDetails : {
@@ -14,16 +13,16 @@ class UserClass extends React.Component {
         }
     }
     async componentDidMount() {
-        console.log("component did mount");
+        //("component did mount");
         const data = await fetch("https://api.github.com/users/Abhirami");
         const json = await data.json();
-        console.log("JSON", json);
+        //("JSON", json);
         this.setState({ userDetails: json });
-        console.log("userDetails", this.state.userDetails);
+        //("userDetails", this.state.userDetails);
 
     }
     render() {
-             console.log("child render");
+             //("child render");
         const { username } = this.props; //destrcutre props
         // const { count } = this.state; // desccture 
         const {login,avatar_url,html_url} = this.state.userDetails; //

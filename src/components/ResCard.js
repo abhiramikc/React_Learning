@@ -1,6 +1,7 @@
 import { CDN_URL } from "../utils/constants";
 const RestCard = (props) => {
   const { resData } = props;
+  //("resData", resData);
   const { name, avgRating, cloudinaryImageId, cuisines, sla } = resData?.info;
   return (
     <div className="restcard">
@@ -14,5 +15,18 @@ const RestCard = (props) => {
     </div>
   );
 };
+
+//highert order components
+export const withIsVegOption = (RestCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="vegName">Vegitarian</label>
+        <RestCard {...props} />
+      </div>
+    )
+  }
+}
+
 
 export default RestCard;

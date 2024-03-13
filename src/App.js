@@ -18,7 +18,9 @@ const Abt = lazy(()=> import("./components/About"))
 const AppLayout = () => {
   return (
     <div className="AppContainer">
-      <Header />
+      <div className="header">
+  <Header />
+      </div>
       <Outlet></Outlet>
     </div>
   );

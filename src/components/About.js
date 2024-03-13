@@ -5,13 +5,13 @@ import React from "react";
 class About extends React.Component {
     constructor() {
         super();
-        console.log("Parent consctor");
+        //("Parent consctor");
     }
     componentDidMount() {
-        console.log("Parent componentDid mount");
+        //("Parent componentDid mount");
     }
     render() {
-        console.log("parent render");
+        //("parent render");
          return (
         <div style={{border: "1px solid black",paddingTop: "5px",marginTop: "5px"}}>
             <h3>About user:</h3>

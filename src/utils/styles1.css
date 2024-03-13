@@ -1,0 +1,87 @@
+.accordian {
+    width: 646px;
+    height: auto;
+    background: #f0f0f0;
+}
+
+.accordian-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+
+    margin-bottom: 25px;
+    cursor: pointer;
+
+}
+
+.accordian-description {
+    padding-left: 16px;
+}
+
+.btn-plus {
+    cursor: pointer;
+    border: none;
+}
+
+.item-cards {
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+.item-price {
+        padding-top: 10px;
+}
+.item-image img {
+    width: 103px;
+    height: 100px;
+    border-radius: 20px;
+    padding: 10px;
+        /* margin-right: 50px; */
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item-cards {
+    /* position: relative; */
+    height: 135px;
+        /* padding: 7px; */
+    /* Add any other styles for your item-cards */
+}
+
+/* .item-content {
+    display: flex;
+    align-items: center;
+} */
+
+.item-details {
+    /* flex: 1; */
+    padding: 20px;
+}
+
+.item-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.btn-add {
+position: absolute;
+    padding-left: 5px;
+            margin-top: 10px;
+}
+
+.name-res {
+        display: flex;
+            justify-content: center;
+            padding-top: 21px;
+            padding-bottom: 5px;
+            font-size: larger;
+            font-weight: 900;
+}
+.res-details {
+    display: flex;
+        justify-content: center;
+        padding: 5px 2px;
+}
+/* Additional styles for item-name, item-price, etc. */

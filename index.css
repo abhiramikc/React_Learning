@@ -2,11 +2,10 @@
     max-width: 50%;
 }
 
-.header {
+.header-component {
     display: flex;
     justify-content: space-between;
     border: 1px solid;
-
 }
 
 .nav-header {
@@ -36,7 +35,6 @@
 }
 
 .restcard :hover {
-    /* border: 1px solid #000; */
     cursor: pointer;
 
 }
@@ -90,4 +88,15 @@ h4 {
 
 menu {
     display: none;
+}
+
+.vegName {
+    position: absolute;
+    background-color: black;
+    color: white;
+    margin: 5px;
+}
+.header {
+            justify-content: space-between;
+            align-items: center;
 }

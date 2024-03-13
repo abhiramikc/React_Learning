@@ -6,7 +6,6 @@ export const Header = () => {
   const status = useStatusCheck();
   const [btnName,setbtnName] = useState("login")
   const handleClick = () => {
-    console.log("clicked");
     if(btnName === "logout")
     { 
       setbtnName("login") 
@@ -17,7 +16,7 @@ export const Header = () => {
     }
   }
     return (
-      <div className="header">
+      <div className="header-component">
         <div className="res-logo">
           <img
             src={LOGO_URL}
