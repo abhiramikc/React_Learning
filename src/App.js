@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header"
+import Header from "./components/Header";
 
 import Body from "./components/Body";
 //import About from "./components/About";
@@ -10,10 +10,13 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import ResMenu from "./components/ResMenu";
 //import Grocery from "./components/Grocery";
 import { UserContex } from "./utils/UserContex";
-import { lazy,Suspense,useState,useEffect } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
+import Cart from "./components/Cart";
+import appstore from './utils/appStore';
+import { Provider } from 'react-redux';
 //food ordering app
-const Grocery = lazy(() =>import("./components/Grocery"))
-const Abt = lazy(()=> import("./components/About"))
+const Grocery = lazy(() => import("./components/Grocery"));
+const Abt = lazy(() => import("./components/About"));
 //The base
 const AppLayout = () => {
   const [username, setUserName] = useState();
@@ -22,17 +25,19 @@ const AppLayout = () => {
       name: "John",
     };
     setUserName(user.name);
-
   }, []);
   return (
-    <UserContex.Provider value={{loggedInUser : username,setUserName}}>
-    <div className="AppContainer">
-      <div className="header">
-      <Header />
-      </div>
-      <Outlet></Outlet>
+    <Provider store={ appstore }>
+    <UserContex.Provider value={{ loggedInUser: username, setUserName }}>
+      <div className="AppContainer">
+        <div className="header">
+          <Header />
+        </div>
+        <Outlet></Outlet>
       </div>
       </UserContex.Provider>
+    </Provider>
+
   );
 };
 
@@ -44,22 +49,24 @@ const appRoute = createBrowserRouter([
     children: [
       { path: "/", element: <Body /> },
       {
-        path: "/about", element: (
+        path: "/about",
+        element: (
           <Suspense fallback={<h1>Loading about...</h1>}>
-             <Abt /> 
-        </Suspense>
-      )},
+            <Abt />
+          </Suspense>
+        ),
+      },
       { path: "/contact", element: <Contact /> },
       { path: "/restaurent/:resid", element: <ResMenu /> },
       {
-        path: "/grocery", element: (
+        path: "/grocery",
+        element: (
           <Suspense fallback={<h1>Loading...</h1>}>
-          <Grocery />
-
+            <Grocery />
           </Suspense>
-        )
-          
+        ),
       },
+      {path:"/cart" ,element: <Cart/> }
     ],
   },
 ]);

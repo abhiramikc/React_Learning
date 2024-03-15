@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import useStatusCheck from '../utils/useStatusCheck';
 import { useContext } from 'react';
 import { UserContex } from '../utils/UserContex';
+import { useSelector } from 'react-redux';
 //importing the context created
 // import { UserContex } from '../utils/UserContex';
 export const Header = () => {
@@ -11,7 +12,10 @@ export const Header = () => {
   const [btnName, setbtnName] = useState("login");
   // const data = useContext(UserContex);
   const {loggedInUser} = useContext(UserContex);
-  // console.log(data);
+  //USE Selector 
+  const cartItems = useSelector((store) => store.cart.items); // Example selector
+  console.log(cartItems);
+
   const handleClick = () => {
     if(btnName === "logout")
     { 
@@ -37,7 +41,7 @@ export const Header = () => {
             <li className="nav"><Link  className="menu-card-text" to="/about">About</Link></li>
             <li className="nav"><Link className="menu-card-text" to="/contact">contact</Link></li>
             <li className="nav"><Link className="menu-card-text" to="/grocery">Grocery</Link></li>
-            <li className="nav"><Link className="menu-card-text" to="/cart">Cart</Link></li>
+            <li className="nav"><Link className="menu-card-text" to="/cart">🛒({ cartItems.length })</Link></li>
             <li className="nav">{ loggedInUser }</li>
             <li className="nav"><button onClick={handleClick}>{btnName}</button></li>
             </ul>

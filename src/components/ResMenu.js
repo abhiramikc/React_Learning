@@ -39,7 +39,7 @@ const ResMenu = () => {
     c.card.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   )
   console.log("menusection", menusection);
-  if (!itemCards) {
+  if (!menusection) {
     return <NoMenu />;
   }
   return (

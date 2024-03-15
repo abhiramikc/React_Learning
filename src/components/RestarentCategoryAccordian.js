@@ -1,7 +1,7 @@
 import RestarentCategoryAccordianDescription from "./RestarentCategoryAccordianDescription";
 import { useState } from "react";
 const RestarentCategoryAccordian = ({ menuitem,hideAccordian,setShowIndex }) => {
-  //console.log("menuitem",menuitem);
+  console.log("menuitem",menuitem);
   // const individualMenu = menuitem.menuitem.card?.card?.itemCards
   // const [hideAccordian, setHideAccordian] = useState(false);
 
