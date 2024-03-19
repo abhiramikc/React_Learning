@@ -41,7 +41,7 @@ export const Header = () => {
             <li className="nav"><Link  className="menu-card-text" to="/about">About</Link></li>
             <li className="nav"><Link className="menu-card-text" to="/contact">contact</Link></li>
             <li className="nav"><Link className="menu-card-text" to="/grocery">Grocery</Link></li>
-            <li className="nav"><Link className="menu-card-text" to="/cart">🛒({ cartItems.length })</Link></li>
+            <li className="nav"><Link className="menu-card-text" to="/cart">items:({ cartItems.length })</Link></li>
             <li className="nav">{ loggedInUser }</li>
             <li className="nav"><button onClick={handleClick}>{btnName}</button></li>
             </ul>
